@@ -27,20 +27,22 @@
 ## 🔧 模型流程
 
 ### Step 1：Log return
+- 為什麼？(詳情請看**專案檔案**)
+  - 原始價格具有非定態性與強烈的自相關，會讓深度學習模型難以學習。因此我們先將價格轉為 log return，使資料更穩定、波動性更小，適合建模。
 - 防止模型訓練錯誤的問題(詳情請看**專案檔案**)
-- 
 
 ### Step 2：訊號降噪（FFT）
-- 為了解決模型訓練不起來的問題，運用傅立葉轉換(FFT)降噪 (詳情請看**專案檔案**)
+- 為什麼？(詳情請看**專案檔案**)
+  - 訓練初期發現模型對 log return 的訓練無法收斂，懷疑資料中存在大量高頻雜訊（如：隨機跳動）。因此採用傅立葉轉換（FFT）將頻率域資訊拆解，並移除高頻成分以強化訊號。
 - 使用傅立葉轉換移除高頻雜訊
 - 最佳截止頻率 cutoff = **0.33**
 
 ### Step 3：預測去噪後報酬率
 - 訓練 LSTM 模型預測平滑過的 ![預測公式](./CodeCogsEqn%20(1).svg)
 - LSTM細節:
-- Hyperparameters: Past time steps: 25
-- Number of Layers: 2 LSTM layers
-- Learning rate: 0.001
+  - Hyperparameters: Past time steps: 25
+  - Number of Layers: 2 LSTM layers
+  - Learning rate: 0.001
 
 ### Step 4：預測收盤價
 - 利用轉換關係：
