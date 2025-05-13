@@ -35,7 +35,7 @@
 - 最佳截止頻率 cutoff = **0.33**
 
 ### Step 3：預測去噪後報酬率
-- 再次訓練 LSTM 模型預測平滑過的 ![FFt log return](./CodeCogsEqn (1).svg)
+- 再次訓練 LSTM 模型預測平滑過的 ![預測公式](./CodeCogsEqn (1).svg)
 
 ### Step 4：預測收盤價
 - 利用轉換關係：
