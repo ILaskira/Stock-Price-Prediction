@@ -26,23 +26,28 @@
 
 ## 🔧 模型流程
 
-### Step 1：預測對數報酬率（Log Return）
-- 利用 **2 層 LSTM 模型**
-- 訓練集長度(天數)：25、學習率: 0.001
+### Step 1：Log return
+- 防止模型訓練錯誤的問題(詳情請看**專案檔案**)
+- 
 
-### Step 2：訊號去噪（FFT）
+### Step 2：訊號降噪（FFT）
+- 為了解決模型訓練不起來的問題，運用傅立葉轉換(FFT)降噪 (詳情請看**專案檔案**)
 - 使用傅立葉轉換移除高頻雜訊
 - 最佳截止頻率 cutoff = **0.33**
 
 ### Step 3：預測去噪後報酬率
-- 再次訓練 LSTM 模型預測平滑過的 ![預測公式](./CodeCogsEqn%20(1).svg)
+- 訓練 LSTM 模型預測平滑過的 ![預測公式](./CodeCogsEqn%20(1).svg)
+- LSTM細節:
+- Hyperparameters: Past time steps: 25
+- Number of Layers: 2 LSTM layers
+- Learning rate: 0.001
 
 ### Step 4：預測收盤價
 - 利用轉換關係：
   ![預測公式](./CodeCogsEqn.svg)
 
 ### Step 5：建立信賴區間（GARCH）
-- 對 log return 建立 **GARCH(1,1)** 模型估計波動
+- 對 log return residual 建立 **GARCH(1,1)** 模型估計波動
 - 建立 **95% 預測區間**
 
 ---
