@@ -38,8 +38,8 @@
 - 再次訓練 LSTM 模型預測平滑過的 \( \tilde{r}_{t+1} \)
 
 ### Step 4：預測收盤價
-- 利用轉換關係：  
-  \( \hat{P}_{t+1} = P_t \cdot e^{\hat{\tilde{r}}_{t+1}} \)
+- 利用轉換關係：
+  ![預測公式](./CodeCogsEqn.svg)
 
 ### Step 5：建立信賴區間（GARCH）
 - 對 log return 建立 **GARCH(1,1)** 模型估計波動
