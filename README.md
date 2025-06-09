@@ -61,7 +61,7 @@
 
 ---
 
-### 📊 Confusion Matrix – Test Set
+## 📊 Confusion Matrix
 
 | True \ Pred | -1 (Predicted) | 1 (Predicted) |
 |-------------|----------------|---------------|
